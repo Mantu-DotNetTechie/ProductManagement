@@ -1,0 +1,37 @@
+<div>
+    <h2>{{isEditMode ? 'Edit Product' : 'Add Product'}}</h2>
+
+    <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+        <div>
+            <label for="name">Name</label>
+            <input [(ngModel)]="product.name" 
+            required
+            type="text" id="name" name="name" />
+        </div>
+
+        <div>
+            <label for="description">Description</label>
+            <input [(ngModel)]="product.description" 
+            required
+            type="text" id="description" name="description" />
+        </div>
+
+        <div>
+            <label for="category">Category</label>
+            <input [(ngModel)]="product.category" 
+            required
+            type="text" id="category" name="category" />
+        </div>
+
+        <div>
+            <label for="price">Price</label>
+            <input [(ngModel)]="product.price" 
+            required
+            type="number" id="price" name="price" />
+        </div>
+
+        <button type="submit">{{isEditMode ? 'Update' : 'Add'}}</button>
+        <button (click)="onCancel()">Cancel</button>
+
+    </form>
+</div>

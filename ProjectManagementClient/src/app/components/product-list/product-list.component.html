@@ -1,0 +1,62 @@
+
+    <h2>Product List</h2>
+
+    <div class="container">
+        <div class="search-selection action-buttons">
+            <input type="text" [(ngModel)]="searchName" placeholder="Search by name" (keyup)="searchProducts()" />
+            <button (click)="searchProducts()">Search</button>
+        </div>
+
+        <div class="sort-section action-buttons">
+            <label for="sortField">Sort By: </label>
+            <select id="sortField" [(ngModel)]="sortBy">
+                <option value="name">Name</option>
+                <option value="category">Category</option>
+                <option value="price">Price</option>
+            </select>
+    
+            <select name="sortOrder" id="sortOrder"[(ngModel)]="sortAsc" >
+                <option value="true">Ascending</option>
+                <option value="false">Descending</option>
+            </select>
+            <button (click)="sortProducts()">Sort</button>
+        </div>
+
+        <div class="action-buttons">
+            <button routerLink="/products/new">Add Product</button>
+            <button (click)="deleteAllProducts()">Delete All Products</button>   
+        </div>
+
+    </div>
+
+    
+    
+
+
+    <br/>
+    <table>
+        <thead>
+            <tr>
+                <!-- <th>Product ID</th> -->
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Product Category</th>
+                <th>Product Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <!-- <td>{{product.id}}</td> -->
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.price}}</td>
+                <td>
+                    <!-- <button routerLink="/products/edit/{{product.id}}">Edit</button>
+                    <button (click)="deleteProduct(product.id)">Delete</button> -->
+                    <app-product-item [product]="product" (delete)="deleteProduct($event)"></app-product-item>
+                </td>
+            </tr>
+        </tbody>
+    </table>
